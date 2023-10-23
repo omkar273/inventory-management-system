@@ -1,0 +1,39 @@
+{
+  "name": "client",
+  "private": true,
+  "author": "Omkar sonawane",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.13",
+    "@reduxjs/toolkit": "^1.9.3",
+    "dotenv": "^16.0.3",
+    "formik": "^2.2.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.9.0",
+    "redux-persist": "^6.0.0",
+    "vite-jsconfig-paths": "^2.0.1",
+    "yup": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.4",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "vite": "^4.2.0"
+  }
+}
