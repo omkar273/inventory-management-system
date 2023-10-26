@@ -21,6 +21,8 @@ const Sales = () => {
   const [productQuantity, setproductQuantity] = useState(1)
   const [cost, setcost] = useState(0)
   const [productId, setproductId] = useState('')
+  const [quantity, setquantity] = useState(0)
+  const [snackBarMsg, setsnackBarMsg] = useState("Please fill all fields")
 
   const getData = async () => {
     const data = await getAllProducts();
@@ -34,6 +36,7 @@ const Sales = () => {
         setproductPrice(element.sellingPrice)
         setproductId(element.id)
         setcost(productQuantity * productPrice)
+        setquantity(element.quantity)
       }
     }
   }
@@ -86,11 +89,15 @@ const Sales = () => {
 
           {/* add sales  */}
           <div className=''>
-            <input type="text" placeholder="Add Product Quantity" className="border border-gray-300 p-3 rounded-md focus:outline-none  text-base text-[#252525] mb-6 md:w-1/4 w-1/2 min-w-max"
+            <input type="text" placeholder="Add Product Quantity" className="border border-gray-300 p-3 rounded-md focus:outline-none  text-base text-[#252525] mb-2 md:w-1/4 w-1/2 min-w-max"
               onChange={(e) => {
                 setproductQuantity(e.target.value)
               }} />
           </div>
+          <p className='w-full font-fira_sans text-[1.25rem] text-green-600  mb-6'>
+            {`Available quantity :  ${quantity}`}
+          </p>
+
           <p className='w-full font-serif text-[1.35rem] text-red-600'>
             {`Total cost :  ${cost}`}
           </p>
@@ -98,8 +105,13 @@ const Sales = () => {
           <Button variant='contained' className='flex gap-2 w-[8rem] items-center justify-around' sx={{ p: '0.5rem' }}
             onClick={async () => {
               if (productName == "" || productQuantity < 1 || cost < 1) {
+                setsnackBarMsg("Please fill all fields")
                 setsnackBarOpen(true);
-              } else {
+              } else if (quantity < productQuantity) {
+                setsnackBarMsg("Available quantity is less")
+                setsnackBarOpen(true);
+              }
+              else {
                 setloading(true);
                 const res = await addSales({
                   productName: productName,
@@ -113,6 +125,8 @@ const Sales = () => {
                   })
                 })
                 setloading(false);
+                setsnackBarMsg("Sale added successfully")
+                setsnackBarOpen(true);
               }
             }}>
             {loading && <WhiteCircularProgress size={24} />}
@@ -122,7 +136,7 @@ const Sales = () => {
           {/* error message snackbar */}
           <Snackbar open={snackBarOpen} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
-              {"Please fill all fields"}
+              {snackBarMsg}
             </Alert>
           </Snackbar>
 
