@@ -18,7 +18,7 @@ const AuthPage = () => {
 
     const signUpUser = async () => {
         try {
-            const cred = await createUserWithEmailAndPassword(auth, email, password)
+            const cred = await createUserWithEmailAndPassword(auth, email.trim(), password.trim())
         } catch (error) {
             alert(error)
         }
@@ -26,7 +26,7 @@ const AuthPage = () => {
 
     const loginUpUser = async () => {
         try {
-            const cred = await signInWithEmailAndPassword(auth, email, password)
+            const cred = await signInWithEmailAndPassword(auth, email.trim(), password.trim())
         } catch (error) {
             alert(error)
         }
