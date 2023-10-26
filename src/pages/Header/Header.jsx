@@ -10,7 +10,7 @@ import MobileMenu from './MobileMenu';
 const Header = ({ sectionNo, setsectionNo }) => {
     const [isMobileMenuToggled, setisMobileMenuToggled] = useState(false)
     return (
-        <div className='md:p-3 p-2  md:px-[2rem] w-full md:w-full bg-gray-850 py-2 md:py-4 flex justify-between md:justify-end shadow-md z-50'>
+        <div className='md:p-3 p-2  md:px-[2rem] w-full md:w-full bg-white py-2 md:py-4 flex justify-between md:justify-end shadow-md z-50'>
 
             {/* mobile menubar */}
             {isMobileMenuToggled &&

@@ -1,16 +1,46 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AuthHeader from './AuthHeader'
 import { Button, TextField } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/firebase/config'
 
 const AuthPage = () => {
-    const [params, setParams] = useSearchParams({ pageType: 'login' })
+
+
+    const [params, setParams] = useSearchParams({
+        pageType: 'login', email: '', password: ''
+    });
+
     const isLogin = params.get('pageType') == 'login'
+    const email = params.get('email')
+    const password = params.get('password')
+
+    const signUpUser = async () => {
+        try {
+            const cred = await createUserWithEmailAndPassword(auth, email, password)
+            console.log(cred)
+        } catch (error) {
+            alert(error)
+            console.log(error);
+        }
+    }
+
+    const loginUpUser = async () => {
+        try {
+            const cred = await signInWithEmailAndPassword(auth, email, password)
+            console.log(cred)
+        } catch (error) {
+            alert(error)
+            console.log(error);
+        }
+    }
+
     const setPageType = (pageType) => {
         setParams(prev => {
             prev.set("pageType", pageType)
             return prev;
-        })
+        }, { replace: true })
     }
 
     return (
@@ -22,11 +52,24 @@ const AuthPage = () => {
                     <h1 className='text-3xl font-semibold mb-6 font-fira_sans '>
                         {isLogin ? 'Login' : 'Create Account'}
                     </h1>
-                    <TextField label={'Email'} sx={{ width: '100%', fontWeight: 600, mb: '1rem' }} />
+                    <TextField label={'Email'} sx={{ width: '100%', fontWeight: 600, mb: '1rem' }}
+                        onChange={(e) => setParams(prev => {
+                            prev.set("email", e.target.value)
+                            return prev;
+                        }, { replace: true })}
+                    />
 
-                    <TextField label={'Password'} sx={{ width: '100%', fontWeight: 600, mb: '2.5rem' }} />
+                    <TextField label={'Password'} sx={{ width: '100%', fontWeight: 600, mb: '2.5rem' }}
+                        onChange={(e) => setParams(prev => {
+                            prev.set("password", e.target.value)
+                            return prev;
+                        }, { replace: true })}
+                    />
 
-                    <Button variant='contained' className='w-full h-12 font-fira_sans text-3xl font-bold mb-8'>
+                    <Button
+                        variant='contained'
+                        className='w-full h-12 font-fira_sans text-3xl font-bold mb-8'
+                        onClick={() => isLogin ? loginUpUser() : signUpUser()}>
                         {isLogin ? 'Login' : 'Register'}
                     </Button>
 

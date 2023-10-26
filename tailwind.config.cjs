@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       fontFamily: {
         fira_sans: ["Fira Sans", "Great Vibes", "cursive", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+        ubuntu: ["Ubuntu", "sans-serif"],
       },
     },
   },
