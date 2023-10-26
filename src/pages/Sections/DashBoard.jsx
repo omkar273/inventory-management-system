@@ -92,7 +92,7 @@ const DashBoard = ({ sectionNo, setsectionNo }) => {
 
             {/* tables */}
             <div className='md:grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 px-4 mt-12 gap-5 justify-around'>
-                <div>
+                <div className='mb-6 md:m-0'>
                     <Paper className='flex flex-col flex-shrink-0 h-auto max-h-max bg-gray-200 rounded-md shadow-md py-4'>
                         {/* title */}
                         <div className='p-2 font-ubuntu text-[1.25rem] text-[#252525] font-semibold flex gap-3 items-center  border-b-2 border-blue-500'>
@@ -126,7 +126,7 @@ const DashBoard = ({ sectionNo, setsectionNo }) => {
                     </Paper>
                 </div>
 
-                <div>
+                <div className='mb-6 md:m-0'>
                     <Paper className='flex flex-col flex-shrink-0 h-auto max-h-max bg-gray-200 rounded-md shadow-md py-4'>
                         {/* title */}
                         <div className='p-2 font-ubuntu text-[1.25rem] text-[#252525] font-semibold flex gap-3 items-center  border-b-2 border-blue-500'>
@@ -158,7 +158,7 @@ const DashBoard = ({ sectionNo, setsectionNo }) => {
                     </Paper>
                 </div>
 
-                <div>
+                <div className='mb-6 md:m-0'>
                     <Paper className='flex flex-col flex-shrink-0 h-auto max-h-max bg-gray-200 rounded-md shadow-md py-4'>
                         {/* title */}
                         <div className='p-2 font-ubuntu text-[1.25rem] text-[#252525] font-semibold flex gap-3 items-center  border-b-2 border-blue-500'>
