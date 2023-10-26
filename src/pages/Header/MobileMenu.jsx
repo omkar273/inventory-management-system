@@ -55,7 +55,10 @@ const MobileMenu = (
             {tiles.map((tile, index) =>
                 <div key={index} className='text-[1.25rem] items-center py-3  flex gap-5 cursor-pointer hover:text-white'
                     style={{ color: index === sectionNo ? 'white' : null }}
-                    onClick={() => setsectionNo(index)}>
+                    onClick={() => {
+                        setsectionNo(index)
+                        setisMobileMenuToggled(!isMobileMenuToggled);
+                    }}>
                     {tile.icon}
                     {tile.title}
                 </div>
