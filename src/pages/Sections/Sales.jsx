@@ -1,17 +1,16 @@
 import React from 'react'
 import { useState } from 'react';
-import { Alert, WhiteCircularProgress } from './Categories';
-import { addSales } from '@/firebase/firebase_helper';
-import { useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import AddCategoryIcon from '@mui/icons-material/DashboardCustomizeOutlined';
+import { Alert, WhiteCircularProgress } from './Categories';
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
+import { useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
+import { addSales, getAllProducts } from '@/firebase/firebase_helper';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Snackbar from '@mui/material/Snackbar';
-
 const Sales = () => {
 
   const [productsList, setproductsList] = useState([])
@@ -21,11 +20,11 @@ const Sales = () => {
   const [productPrice, setproductPrice] = useState(0)
   const [productQuantity, setproductQuantity] = useState(1)
   const [cost, setcost] = useState(0)
+  const [productId, setproductId] = useState('')
 
   const getData = async () => {
     const data = await getAllProducts();
     setproductsList(data);
-    console.log(data);
   }
 
   const calculateCost = () => {
@@ -33,6 +32,7 @@ const Sales = () => {
       const element = productsList[index];
       if (element.name === productName) {
         setproductPrice(element.sellingPrice)
+        setproductId(element.id)
         setcost(productQuantity * productPrice)
       }
     }
@@ -105,6 +105,7 @@ const Sales = () => {
                   productName: productName,
                   productQuantity: productQuantity,
                   cost: cost,
+                  productId: productId,
                   date: new Date().toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -112,11 +113,10 @@ const Sales = () => {
                   })
                 })
                 setloading(false);
-                console.log(res);
               }
             }}>
             {loading && <WhiteCircularProgress size={24} />}
-            {loading ? "Saving" : 'Add Product'}
+            {loading ? "Saving" : 'Add Sale'}
           </Button>
 
           {/* error message snackbar */}

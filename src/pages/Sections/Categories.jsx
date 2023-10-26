@@ -36,10 +36,9 @@ const Categories = () => {
     setsnackBarOpen(false);
   };
 
-   const getData = async () => {
+  const getData = async () => {
     const data = await getAllCategories();
     setcategoriesList(data);
-    console.log(data);
   }
 
   useEffect(() => {

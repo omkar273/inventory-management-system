@@ -28,18 +28,17 @@ const Products = () => {
     quantity: 0,
     purchasePrice: 0,
     sellingPrice: 0,
+    itemsSold: 0
   })
 
   const getCategoriesData = async () => {
     const data = await getAllCategories();
     setcategoriesList(data);
-    console.log(data);
   }
 
   const getData = async () => {
     const data = await getAllProducts();
     setproductsList(data);
-    console.log(data);
   }
 
   useEffect(() => {
@@ -162,7 +161,8 @@ const Products = () => {
                 <tr>
                   <th className="px-4 py-2">Name</th>
                   <th className="px-4 py-2">Category</th>
-                  <th className="px-4 py-2">Quantity</th>
+                  <th className="px-4 py-2">Available Quantity</th>
+                  <th className="px-4 py-2">Sold</th>
                   <th className="px-4 py-2">Purchase price</th>
                   <th className="px-4 py-2">Selling price</th>
                   <th className="px-4 py-2">Actions</th>
@@ -174,12 +174,13 @@ const Products = () => {
                     <td className={styling}>{product.name}</td>
                     <td className={styling}>{product.category}</td>
                     <td className={styling}>{product.quantity}</td>
+                    <td className={styling}>{product.itemsSold}</td>
                     <td className={styling}>{product.purchasePrice}</td>
                     <td className={styling}>{product.sellingPrice}</td>
                     <td className={'border border-[#443c68] min-w-[6rem] p-4 leading-7 flex justify-center items-center'}>
                       <IconButton edge="end" aria-label="delete" onClick={async () => {
                         await deleteProduct(product.id);
-                        await getData();
+                        await getData()
                       }}>
                         <DeleteIcon color='error' />
                       </IconButton>

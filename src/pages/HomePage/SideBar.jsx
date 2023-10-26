@@ -42,7 +42,6 @@ const SideBar = ({ sectionNo, setsectionNo }) => {
     const handleSignOut = async () => {
         try {
             await signOut(auth);
-            console.log('User signed out successfully.');
         } catch (error) {
             console.error('An error occurred while signing out:', error);
         }

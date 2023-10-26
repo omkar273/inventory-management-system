@@ -3,11 +3,14 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
+  increment,
   orderBy,
   query,
   serverTimestamp,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "./config";
 
@@ -61,7 +64,29 @@ export const deleteProduct = async (productId) => {
   await deleteDoc(productDocRef);
 };
 
+export const incrementProductSold = async (productId, incrementValue) => {
+  const productRef = doc(db, "products", productId);
+  try {
+    const dataSnapshot = await getDoc(productRef);
+    const currentData = dataSnapshot.data();
+    const updatedQuantity = parseInt(
+      (currentData.quantity || 0) - incrementValue,
+      10
+    );
+
+    const updatedItems =
+      Number(currentData.itemsSold || 0) + Number(incrementValue);
+    await updateDoc(productRef, {
+      quantity: updatedQuantity,
+      itemsSold: updatedItems,
+    });
+  } catch (error) {
+    console.error("Error updating document: ", error);
+  }
+};
+
 export const addSales = async (data) => {
+  await incrementProductSold(data.productId, data.productQuantity);
   return await addDoc(salesCollectionRef, {
     ...data,
     createdAt: serverTimestamp(),
@@ -78,4 +103,20 @@ export const getAllSales = async () => {
   });
 
   return salesTransactions;
+};
+export const getTopSales = async () => {
+  const q = query(salesCollectionRef, orderBy("cost", "desc"));
+
+  const querySnapshot = await getDocs(q);
+  const salesTransactions = [];
+  querySnapshot.forEach((doc) => {
+    salesTransactions.push({ id: doc.id, ...doc.data() });
+  });
+
+  return salesTransactions;
+};
+
+export const deleteSale = async (transactionId) => {
+  const salesRef = doc(db, "sales", transactionId);
+  await deleteDoc(salesRef);
 };

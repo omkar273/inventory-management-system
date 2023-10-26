@@ -19,20 +19,16 @@ const AuthPage = () => {
     const signUpUser = async () => {
         try {
             const cred = await createUserWithEmailAndPassword(auth, email, password)
-            console.log(cred)
         } catch (error) {
             alert(error)
-            console.log(error);
         }
     }
 
     const loginUpUser = async () => {
         try {
             const cred = await signInWithEmailAndPassword(auth, email, password)
-            console.log(cred)
         } catch (error) {
             alert(error)
-            console.log(error);
         }
     }
 
