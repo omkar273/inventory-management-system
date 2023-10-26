@@ -6,6 +6,9 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import CategoryIcon from '@mui/icons-material/Category';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import LogoutIcon from '@mui/icons-material/LogoutOutlined';
+import { app, auth } from '@/firebase/config.js'
+import { getAuth, signOut } from 'firebase/auth';
 
 const MobileMenu = (
     {
@@ -41,6 +44,15 @@ const MobileMenu = (
     ]
     const heading1 = "Inventory";
     const heading2 = "Management";
+
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+        } catch (error) {
+            console.error('An error occurred while signing out:', error);
+        }
+    };
+
     return (
         <div className='h-screen bg-gray-900 font-serif block py-5 text-[2rem] px-4 fixed top-0 left-0 z-50 md:hidden'>
             <div className='flex justify-end'>
@@ -63,6 +75,11 @@ const MobileMenu = (
                     {tile.title}
                 </div>
             )}
+            <div className='text-[1.25rem] items-center py-3  flex gap-5 cursor-pointer hover:text-white'
+                onClick={handleSignOut}>
+                {<LogoutIcon />}
+                {"Logout"}
+            </div>
         </div>
     )
 }
