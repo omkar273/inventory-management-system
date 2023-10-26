@@ -16,10 +16,10 @@ const SideBar = ({ sectionNo, setsectionNo }) => {
             title: "Dashboard",
             icon: <HomeIcon />
         },
-        {
-            title: "User Management",
-            icon: <ManageAccountsIcon />
-        },
+        // {
+        //     title: "User Management",
+        //     icon: <ManageAccountsIcon />
+        // },
         {
             title: "Categories",
             icon: <CategoryIcon />

@@ -120,3 +120,26 @@ export const deleteSale = async (transactionId) => {
   const salesRef = doc(db, "sales", transactionId);
   await deleteDoc(salesRef);
 };
+
+export const getDashboardData = async () => {
+  const topSales = await getTopSales();
+  const latestSales = await getAllSales();
+  const recentProducts = await getAllProducts();
+  const allCategories = await getAllCategories();
+  const totalProducts = recentProducts.length;
+  const totalCategories = allCategories.length;
+  var totalSale = 0;
+  for (let index = 0; index < latestSales.length; index++) {
+    const element = latestSales[index];
+    totalSale += element.cost;
+  }
+
+  return {
+    topSales: topSales.slice(0, 10),
+    latestSales: latestSales.slice(0, 10),
+    recentProducts: recentProducts.slice(0, 10),
+    totalProducts,
+    totalCategories,
+    totalSale,
+  };
+};

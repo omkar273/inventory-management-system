@@ -55,7 +55,8 @@ const Products = () => {
     setsnackBarOpen(false);
   };
 
-  const styling = 'border border-[#443c68] md:min-w-[20rem] min-w-[10rem] md:p-4 p-2 leading-7';
+  const styling = 'border border-[#443c68] md:min-w-[10rem] min-w-[8rem] md:p-4 p-2 leading-7';
+  
   return (
     <div className='pb-16'>
       {/* add products section */}

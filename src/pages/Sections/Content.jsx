@@ -9,8 +9,8 @@ import SalesReport from './SalesReport'
 
 const Content = ({ sectionNo, setsectionNo }) => {
     const sections = [
-        <DashBoard />,
-        <UserManagement />,
+        <DashBoard sectionNo={sectionNo} setsectionNo={setsectionNo} />,
+        // <UserManagement />,
         <Categories />,
         <Products />,
         <Sales />,

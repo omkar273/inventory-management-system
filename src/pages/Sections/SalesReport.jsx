@@ -19,7 +19,7 @@ const SalesReport = () => {
     getData();
   }, [])
 
-  const styling = 'border border-[#443c68] md:min-w-[20rem] min-w-[10rem] md:p-4 p-2 leading-7';
+  const styling = 'border border-[#443c68] md:min-w-[10rem] min-w-[8rem] md:p-4 p-2 leading-7';
   return (
     <div>
       <div className='md:px-16 px-4 pt-14'>
