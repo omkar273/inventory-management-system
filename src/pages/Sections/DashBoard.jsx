@@ -21,7 +21,6 @@ const DashBoard = ({ sectionNo, setsectionNo }) => {
     const getData = async () => {
         const data = await getDashboardData();
         setdata(data);
-        console.log(data);
     }
 
     useEffect(() => {

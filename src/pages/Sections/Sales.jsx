@@ -11,6 +11,7 @@ import { addSales, getAllProducts } from '@/firebase/firebase_helper';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Snackbar from '@mui/material/Snackbar';
+
 const Sales = () => {
 
   const [productsList, setproductsList] = useState([])
