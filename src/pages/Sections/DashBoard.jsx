@@ -33,9 +33,9 @@ const DashBoard = ({ sectionNo, setsectionNo }) => {
         <div className='pt-8'>
 
             {/* cards */}
-            <div className='w-full grid grid-cols-1 justify-center place-items-center gap-4 md:grid-cols-3 sm:grid-cols-2 md:justify-around'>
+            <div className='w-full grid grid-cols-1 justify-center place-items-center gap-8 md:grid-cols-3 sm:grid-cols-2 md:justify-around'>
 
-                <Card className='w-max md:flex cursor-pointer'
+                <Card className='md:w-max mx-5 w-[80%] md:flex cursor-pointer'
                     onClick={() => setsectionNo(1)}>
                     <div className='p-6 bg-orange-600 flex justify-center items-center'>
                         <CategoryIcon fontSize='3.5rem'
@@ -53,9 +53,9 @@ const DashBoard = ({ sectionNo, setsectionNo }) => {
                     </div>
                 </Card>
 
-                <Card className='w-max md:flex cursor-pointer'
+                <Card className='md:w-max w-[80%] md:flex cursor-pointer'
                     onClick={() => setsectionNo(2)}>
-                    <div className='p-6 bg-violet-600 flex justify-center items-center'>
+                    <div className='p-6 bg-purple-600 flex justify-center items-center'>
                         <InventoryIcon fontSize='3.5rem'
                             sx={{ fontSize: '3.5rem', color: 'white' }} />
                     </div>
@@ -70,7 +70,7 @@ const DashBoard = ({ sectionNo, setsectionNo }) => {
                         </p>
                     </div>
                 </Card>
-                <Card className='w-max md:flex cursor-pointer'
+                <Card className='md:w-max w-[80%] md:flex cursor-pointer'
                     onClick={() => setsectionNo(4)}>
                     <div className='p-6 bg-green-600 flex justify-center items-center'>
                         <MoneyIcon fontSize='3.5rem'

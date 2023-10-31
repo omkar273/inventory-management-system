@@ -48,7 +48,7 @@ const Sales = () => {
         setproductPrice(element.sellingPrice)
         setproductId(element.id)
         setcost(cost)
-        setquantity(element.quantity)
+        setquantity(parseInt(element.quantity, 10))
         setdiscount(discountPrice)
         setfinalCost(cost - discountPrice)
       }
@@ -105,7 +105,15 @@ const Sales = () => {
           <div className=''>
             <input type="text" placeholder="Add Product Quantity" className="border border-gray-300 p-3 rounded-md focus:outline-none  text-base text-[#252525] mb-2 md:w-1/4 w-1/2 min-w-max"
               onChange={(e) => {
-                setproductQuantity(e.target.value)
+                setproductQuantity(Math.floor(e.target.value))
+              }}
+
+              onInput={(e) => {
+                // Allow only numbers and certain special keys
+                const charCode = e.which ? e.which : e.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                  e.preventDefault();
+                }
               }} />
             {productName != '' &&
               <p className='w-full font-fira_sans text-[1rem] mb-3 whitespace-break-spaces'>

@@ -107,6 +107,14 @@ const Products = () => {
                 <input type="text" placeholder="Product Quantity"
                   className="p-2 rounded-md w-full focus:outline-none border-none text-base text-[#252525]"
                   onChange={(e) => setproductData((prev) => ({ ...prev, quantity: parseInt(e.target.value, 10) }))}
+
+                  onInput={(e) => {
+                    // Allow only numbers and certain special keys
+                    const charCode = e.which ? e.which : e.keyCode;
+                    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                      e.preventDefault();
+                    }
+                  }}
                 />
               </div>
             </div>
