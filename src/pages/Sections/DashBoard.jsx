@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 const DashBoard = ({ sectionNo, setsectionNo }) => {
 
     const [data, setdata] = useState({
-        topSales: [],
+        topSoldProducts: [],
         latestSales: [],
         recentProducts: [],
         totalProducts: 0,
@@ -106,16 +106,16 @@ const DashBoard = ({ sectionNo, setsectionNo }) => {
                                 <thead className='divide-x'>
                                     <tr>
                                         <th className="px-4 py-2">Name</th>
-                                        <th className="px-4 py-2">Quantity</th>
-                                        <th className="px-4 py-2">Total</th>
+                                        <th className="px-4 py-2">Available Quantity</th>
+                                        <th className="px-4 py-2">Total sold</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data.topSales.map((sale, index) =>
+                                    {data.topSoldProducts.map((sale, index) =>
                                         <tr key={index} className={styling}>
-                                            <td className={styling}>{sale.productName}</td>
-                                            <td className={styling}>{sale.productQuantity}</td>
-                                            <td className={styling}>{sale.cost}</td>
+                                            <td className={styling}>{sale.name}</td>
+                                            <td className={styling}>{sale.quantity}</td>
+                                            <td className={styling}>{sale.itemsSold}</td>
                                         </tr>
                                     )}
                                 </tbody>

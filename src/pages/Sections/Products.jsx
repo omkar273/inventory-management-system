@@ -15,6 +15,7 @@ import MoneyIcon from '@mui/icons-material/CurrencyRupee';
 import Snackbar from '@mui/material/Snackbar';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
+import { Slider } from "@material-tailwind/react";
 
 const Products = () => {
   const [loading, setloading] = useState(false);
@@ -28,7 +29,13 @@ const Products = () => {
     quantity: 0,
     purchasePrice: 0,
     sellingPrice: 0,
-    itemsSold: 0
+    itemsSold: 0,
+    discountPercentage: 0,
+    date: new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
   })
 
   const getCategoriesData = async () => {
@@ -56,7 +63,7 @@ const Products = () => {
   };
 
   const styling = 'border border-[#443c68] md:min-w-[10rem] min-w-[8rem] md:p-4 p-2 leading-7';
-  
+
   return (
     <div className='pb-16'>
       {/* add products section */}
@@ -118,7 +125,24 @@ const Products = () => {
                 <input type="text" placeholder="Selling price" className="p-2 rounded-md w-full focus:outline-none border-none text-base text-[#252525]"
                   onChange={(e) => setproductData((prev) => ({ ...prev, sellingPrice: parseInt(e.target.value, 10) }))} />
               </div>
+
             </div>
+
+            <p className='text-[1.25rem] font-fira_sans mt-10 whitespace-break-spaces'>Discount Percentage (min sale 100 no.)</p>
+            <div className='md:px-8 px-4 mb-6'>
+              <div className=" flex gap-4 justify-center items-center">
+                <p className='text-[1.5rem] w-16'>{productData.discountPercentage + "%"}</p>
+                <Slider defaultValue={productData.discountPercentage}
+                  onChange={(e) => setproductData((prev) => ({ ...prev, discountPercentage: parseInt(e.target.value) }))} />
+                <p className='text-[1.5rem]'>{'100%'}</p>
+              </div>
+            </div>
+
+            {/* details */}
+            <p className='text-[1.25rem] font-fira_sans text-[#252525]'>
+              {`Profit (per item) : ${productData.sellingPrice - productData.purchasePrice} ₹`}
+            </p>
+
 
             <Button variant='contained' className='flex gap-2 w-[8rem] items-center justify-around' sx={{ p: '0.5rem' }}
               onClick={async () => {
@@ -166,7 +190,10 @@ const Products = () => {
                   <th className="px-4 py-2">Sold</th>
                   <th className="px-4 py-2">Purchase price</th>
                   <th className="px-4 py-2">Selling price</th>
-                  <th className="px-4 py-2">Actions</th>
+                  <th className="px-4 py-2">Discount</th>
+                  <th className="px-4 py-2">Profit</th>
+                  <th className="px-4 py-2">Date Added</th>
+                  {/* <th className="px-4 py-2">Actions</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -178,14 +205,21 @@ const Products = () => {
                     <td className={styling}>{product.itemsSold}</td>
                     <td className={styling}>{product.purchasePrice}</td>
                     <td className={styling}>{product.sellingPrice}</td>
-                    <td className={'border border-[#443c68] min-w-[6rem] p-4 leading-7 flex justify-center items-center'}>
+                    <td className={styling}>{product.discountPercentage + '%'}</td>
+                    <td className={styling}>
+                      {product.sellingPrice - product.purchasePrice + ' rs'}
+                    </td>
+                    <td className={styling}>{product.date}</td>
+
+                    {/* <td className={'border border-[#443c68] min-w-[6rem] p-4 leading-7 flex justify-center items-center'}>
                       <IconButton edge="end" aria-label="delete" onClick={async () => {
                         await deleteProduct(product.id);
                         await getData()
                       }}>
                         <DeleteIcon color='error' />
                       </IconButton>
-                    </td>
+                    </td> */}
+
                   </tr>
                 )}
               </tbody>

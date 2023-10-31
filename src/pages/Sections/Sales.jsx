@@ -24,6 +24,9 @@ const Sales = () => {
   const [productId, setproductId] = useState('')
   const [quantity, setquantity] = useState(0)
   const [snackBarMsg, setsnackBarMsg] = useState("Please fill all fields")
+  const [discount, setdiscount] = useState(0)
+  const [finalCost, setfinalCost] = useState(0)
+  const [discountPercentage, setdiscountPercentage] = useState(0)
 
   const getData = async () => {
     const data = await getAllProducts();
@@ -34,10 +37,20 @@ const Sales = () => {
     for (let index = 0; index < productsList.length; index++) {
       const element = productsList[index];
       if (element.name === productName) {
+
+        const cost = productQuantity * productPrice
+        var discountPrice = 0;
+        if (productQuantity >= 100) {
+          discountPrice = cost / 100 * element.discountPercentage
+        }
+
+        setdiscountPercentage(element.discountPercentage)
         setproductPrice(element.sellingPrice)
         setproductId(element.id)
-        setcost(productQuantity * productPrice)
+        setcost(cost)
         setquantity(element.quantity)
+        setdiscount(discountPrice)
+        setfinalCost(cost - discountPrice)
       }
     }
   }
@@ -94,14 +107,28 @@ const Sales = () => {
               onChange={(e) => {
                 setproductQuantity(e.target.value)
               }} />
-          </div>
-          <p className='w-full font-fira_sans text-[1.25rem] text-green-600  mb-6'>
-            {`Available quantity :  ${quantity}`}
-          </p>
+            {productName != '' &&
+              <p className='w-full font-fira_sans text-[1rem] mb-3 whitespace-break-spaces'>
+                {`If you buy more than 100 products you can avail ${discountPercentage}% discount`}
+              </p>
+            }
 
-          <p className='w-full font-serif text-[1.35rem] text-red-600'>
-            {`Total cost :  ${cost}`}
-          </p>
+          </div>
+          <div className='font-fira_sans mb-10'>
+            <p className='w-full font-fira_sans text-[1.25rem] text-green-600  mb-6'>
+              {`Available quantity :  ${quantity}`}
+            </p>
+
+            <p className='w-full text-[1.15rem] mt-2 text-[#252525]'>
+              {`Total cost :  ${cost} rs`}
+            </p>
+            <p className='w-full text-[1.15rem] mt-2  text-[#252525]'>
+              {`discount :  -${discount} rs`}
+            </p>
+            <p className='w-full text-[1.15rem] mt-2 text-green-600'>
+              {`Total cost :  ${finalCost} rs`}
+            </p>
+          </div>
 
           <Button variant='contained' className='flex gap-2 w-[8rem] items-center justify-around' sx={{ p: '0.5rem' }}
             onClick={async () => {
@@ -123,7 +150,7 @@ const Sales = () => {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
-                  })
+                  }),
                 })
                 setloading(false);
                 setsnackBarMsg("Sale added successfully")
@@ -136,7 +163,7 @@ const Sales = () => {
 
           {/* error message snackbar */}
           <Snackbar open={snackBarOpen} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
               {snackBarMsg}
             </Alert>
           </Snackbar>

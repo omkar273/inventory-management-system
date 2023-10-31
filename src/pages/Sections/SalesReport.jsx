@@ -4,8 +4,8 @@ import Paper from '@mui/material/Paper';
 import AddCategoryIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 import { useEffect } from 'react';
 import { deleteSale, getAllSales } from '@/firebase/firebase_helper';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import IconButton from '@mui/material/IconButton';
 
 const SalesReport = () => {
 
@@ -39,7 +39,7 @@ const SalesReport = () => {
                   <th className="px-4 py-2">Quantity</th>
                   <th className="px-4 py-2">Date</th>
                   <th className="px-4 py-2">Total Amount</th>
-                  <th className="px-4 py-2">Actions</th>
+                  {/* <th className="px-4 py-2">Actions</th> */}
                 </tr>
               </thead>
 
@@ -51,14 +51,15 @@ const SalesReport = () => {
                     <td className={styling}>{sale.date}</td>
                     <td className={styling}>{sale.cost}</td>
 
-                    <td className={'border border-[#443c68] min-w-[6rem] p-4 leading-7 flex justify-center items-center'}>
+                    {/* <td className={'border border-[#443c68] min-w-[6rem] p-4 leading-7 flex justify-center items-center'}>
                       <IconButton edge="end" aria-label="delete" onClick={async () => {
                         await deleteSale(sale.id);
                         await getData();
                       }}>
                         <DeleteIcon color='error' />
                       </IconButton>
-                    </td>
+                    </td> */}
+
                   </tr>
                 )}
               </tbody>

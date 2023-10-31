@@ -5,13 +5,13 @@ import Paper from '@mui/material/Paper';
 import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
-import { addCategory, deleteCategory, getAllCategories } from '@/firebase/firebase_helper.js';
+import { addCategory, getAllCategories } from '@/firebase/firebase_helper.js';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { useEffect } from 'react';
 import AllCategoriesIcon from '@mui/icons-material/Apps';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import IconButton from '@mui/material/IconButton';
 
 export const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -105,14 +105,14 @@ const Categories = () => {
                 <p>{index + 1 + "."}</p>
                 <p>{category.name}</p>
               </div>
-              <div>
+              {/* <div>
                 <IconButton edge="end" aria-label="delete" onClick={async () => {
                   await deleteCategory(category.id)
                   await getData()
                 }}>
                   <DeleteIcon color='error' />
                 </IconButton>
-              </div>
+              </div> */}
             </div>
           )}
         </div>

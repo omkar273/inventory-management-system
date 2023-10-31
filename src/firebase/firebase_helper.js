@@ -121,8 +121,20 @@ export const deleteSale = async (transactionId) => {
   await deleteDoc(salesRef);
 };
 
+export const getTopSoldProducts = async () => {
+  const q = query(productsCollectionRef, orderBy("itemsSold", "desc"));
+
+  const querySnapshot = await getDocs(q);
+  const products = [];
+  querySnapshot.forEach((doc) => {
+    products.push({ id: doc.id, ...doc.data() });
+  });
+
+  return products;
+};
+
 export const getDashboardData = async () => {
-  const topSales = await getTopSales();
+  const topSoldProducts = await getTopSoldProducts();
   const latestSales = await getAllSales();
   const recentProducts = await getAllProducts();
   const allCategories = await getAllCategories();
@@ -135,7 +147,7 @@ export const getDashboardData = async () => {
   }
 
   return {
-    topSales: topSales.slice(0, 10),
+    topSoldProducts: topSoldProducts.slice(0, 10),
     latestSales: latestSales.slice(0, 10),
     recentProducts: recentProducts.slice(0, 10),
     totalProducts,
