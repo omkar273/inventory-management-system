@@ -46,6 +46,8 @@ const Categories = () => {
   }, [])
 
 
+
+  
   return (
     <div className='w-full md:flex justify-around py-8  px-8 md:px-0'>
 
