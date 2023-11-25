@@ -1,20 +1,18 @@
-# Inventory Management with Alan AI 📦🚀
+# Inventory Management System 📦🚀
 
-Welcome to our innovative Inventory Management project, seamlessly integrated with Alan AI's Conversational AI SDK. Elevate your inventory game by predicting sales, identifying top-performing products, and managing billing and payments—all with the power of AI. Let's get started!
+Welcome to our cutting-edge Inventory Management System, seamlessly integrated with Alan AI's Conversational AI SDK. Elevate your inventory game by predicting sales, identifying top-performing products, and managing billing and payments—all powered by AI magic. Let's embark on this journey together!
 
-## Features
+## Key Features
 
-- **AI-ML Integration:** Leverage predictive analytics for accurate sales forecasts and product performance insights.
-- **Billing and Payments:** Streamline financial processes with integrated billing and payment functionalities.
+- **AI-ML Integration:** Leverage predictive analytics for precise sales forecasts and insights into product performance.
+- **Billing and Payments:** Streamline financial processes with seamlessly integrated billing and payment functionalities.
 - **User-Friendly Interface:** Enjoy an intuitive and delightful user experience for efficient navigation.
-- **Seamless Voice Interaction:** Alan AI SDK ensures effortless integration for voice commands and human-like conversations.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js installed on your machine.
-- MongoDB and NucliaDB for stable data management.
+Ensure you have Node.js installed on your machine.
 
 ### Installation
 
@@ -30,23 +28,26 @@ Welcome to our innovative Inventory Management project, seamlessly integrated wi
 
 ### Configuration
 
-1. **Create a new firebase project**
-[firebase console](https://console.firebase.google.com/u/0/)
-3. **Add a new web app in that project **
-   After adding new web app in your project section you will get a config similar to this
-  ```shell
-const firebaseConfig = {
-  apiKey: "...",
-  authDomain: "...",
-  projectId: "...",
-  storageBucket: "...",
-  messagingSenderId: "...",
-  appId: "...",
-  measurementId: "....",
-};
+1. **Firebase Setup:**
+   - Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/u/0/).
+   - Add a new web app to your project and copy the Firebase config.
+   - Navigate to `src/firebase/config.js` and replace the existing config with your own.
 
-```
-Copy this anf navigate to
+   ```javascript
+   const firebaseConfig = {
+     apiKey: "...",
+     authDomain: "...",
+     projectId: "...",
+     storageBucket: "...",
+     messagingSenderId: "...",
+     appId: "...",
+     measurementId: "....",
+   };
+
+    ```
+
+   
+Copy this config navigate to
 ```
 src / firebase / config.js
 ```
