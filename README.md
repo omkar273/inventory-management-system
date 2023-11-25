@@ -31,8 +31,7 @@ Welcome to our innovative Inventory Management project, seamlessly integrated wi
 ### Configuration
 
 1. **Create a new firebase project**
-   <a href="https://console.firebase.google.com/u/0/" target="_blank">firebase developer console</a>
-
+[firebase console](https://console.firebase.google.com/u/0/)
 3. **Add a new web app in that project **
    After adding new web app in your project section you will get a config similar to this
   ```shell
