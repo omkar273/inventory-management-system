@@ -1,5 +1,8 @@
 # Inventory Management System 📦🚀
 
+[See all projects ](https://omkarsonawane.netlify.app)
+
+
 Welcome to our cutting-edge Inventory Management System, seamlessly integrated with Alan AI's Conversational AI SDK. Elevate your inventory game by predicting sales, identifying top-performing products, and managing billing and payments—all powered by AI magic. Let's embark on this journey together!
 
 ## Key Features
